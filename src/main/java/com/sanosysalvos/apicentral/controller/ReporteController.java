@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sanosysalvos.apicentral.dto.ReporteCreateDTO;
 import com.sanosysalvos.apicentral.model.ReporteModel;
 import com.sanosysalvos.apicentral.service.ReporteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,8 +30,8 @@ public class ReporteController {
 
     @PostMapping
     @Operation(summary = "Crear un reporte para saber el estado de una mascota")
-    public ResponseEntity<ReporteModel> crearReporte(@Valid @RequestBody ReporteModel reporte){
-        ReporteModel nuevoReporte = reporteService.crearReporte(reporte);
+    public ResponseEntity<ReporteModel> crearReporte(@Valid @RequestBody ReporteCreateDTO dto){
+        ReporteModel nuevoReporte = reporteService.crearReporte(dto);
         return new ResponseEntity<>(nuevoReporte, HttpStatus.CREATED);
     }
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sanosysalvos.apicentral.dto.ReporteCreateDTO;
 import com.sanosysalvos.apicentral.model.ReporteModel;
 import com.sanosysalvos.apicentral.repository.ReporteRepository;
 
@@ -13,9 +15,19 @@ public class ReporteService {
     @Autowired
     private ReporteRepository reporteRepository;
 
-    public ReporteModel crearReporte(ReporteModel reporte) {
-        return reporteRepository.save(reporte);
+    public ReporteModel crearReporte(ReporteCreateDTO dto) {
+        ReporteModel reporte = new ReporteModel();
 
+        //modificado para que me lo tome el controller
+        reporte.setTituloReporte(dto.getTituloReporte());
+        reporte.setDescripcionReporte(dto.getDescripcionReporte());
+        reporte.setTipoReporte(dto.getTipoReporte());
+        reporte.setFechaReporte(dto.getFechaReporte());
+        reporte.setComunaReporte(dto.getComunaReporte());
+        reporte.setLatitudReporte(dto.getLatitudReporte());
+        reporte.setLongitudReporte(dto.getLongitudReporte());
+
+        return reporteRepository.save(reporte);
     }
 
     public List<ReporteModel> obtenerReportes(){
