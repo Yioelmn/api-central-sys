@@ -31,7 +31,7 @@ public class ReporteController {
     @PostMapping
     @Operation(summary = "Crear un reporte para saber el estado de una mascota")
     public ResponseEntity<ReporteModel> crearReporte(@Valid @RequestBody ReporteCreateDTO dto){
-        ReporteModel nuevoReporte = reporteService.crearReporte(dto);
+        ReporteModel nuevoReporte = reporteService.crearReporte(dto); // modificado porque se cambio el service, ahora en lugar de pasar por el model, pasa por dto
         return new ResponseEntity<>(nuevoReporte, HttpStatus.CREATED);
     }
 
